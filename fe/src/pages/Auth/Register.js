@@ -17,6 +17,8 @@ import { useTranslation } from 'react-i18next';
 import logodark from "../../assets/images/logo-dark.png";
 import logolight from "../../assets/images/logo-light.png";
 import { createSelector } from 'reselect';
+import { AuthService } from '../../services/fe/ApiAuthService';
+import { message } from 'antd';
 
 /**
  * Register component
@@ -45,8 +47,8 @@ const Register = (props) => {
             password: Yup.string()
                 .required('Required')
         }),
-        onSubmit: values => {
-            props.registerUser(values);
+        onSubmit: (values) => {
+            registerData(values)
         },
     });
 
@@ -78,6 +80,15 @@ const Register = (props) => {
     useEffect(() => {
         dispatch(apiError(""));
     }, [dispatch]);
+
+	const registerData = async (data) => {
+		const response = await AuthService.register(data);
+		if(response?.status === 200 || response?.status === "success") {
+			message.success("Register successfully");
+		} else {
+			message.success("Register failed");
+		}
+	}
 
     document.title = "Register | Chatvia React - Responsive Bootstrap 5 Chat App"
 

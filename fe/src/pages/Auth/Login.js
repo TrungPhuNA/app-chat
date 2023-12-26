@@ -15,6 +15,8 @@ import { loginUser, apiError } from '../../redux/actions';
 //Import Images
 import logodark from "../../assets/images/logo-dark.png";
 import logolight from "../../assets/images/logo-light.png";
+import { AuthService } from '../../services/fe/ApiAuthService';
+import { message } from 'antd';
 
 /**
  * Login component
@@ -36,21 +38,40 @@ const Login = (props) => {
     // validation
     const formik = useFormik({
         initialValues: {
-            email: 'admin@themesbrand.com',
-            password: '123456'
+            email: '',
+            password: ''
         },
         validationSchema: Yup.object({
             email: Yup.string().required('Please Enter Your Username'),
             password: Yup.string().required('Please Enter Your Password')
         }),
         onSubmit: values => {
-            props.loginUser(values.email, values.password, props.router.navigate);
+			loginData(values);
         },
     });
     
-    if (localStorage.getItem("authUser")) {
-        return <Navigate to="/" />;
-    }
+    // if (localStorage.getItem("authUser")) {
+    //     return <Navigate to="/" />;
+    // }
+
+	const loginData = async (data) => {
+		const response = await AuthService.login(data);
+		if(response?.status === 200 || response?.status === "success") {
+			if(response?.data?.access_token) {
+				localStorage.setItem('access_token', `Bearer ${response?.data?.access_token}`);
+			}
+			if(response?.data?.user) {
+				localStorage.setItem('authUser', JSON.stringify(response?.data?.user));
+			}
+			
+			message.success("Login successfully").then(() => {
+				window.location.href = "/";
+			});
+			
+		} else {
+			message.success("Login failed");
+		}
+	}
 
     document.title = "Login | Chatvia React - Responsive Bootstrap 5 Chat App"
 
