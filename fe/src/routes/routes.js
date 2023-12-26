@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom";
 // lazy load all the views
 const Dashboard = React.lazy(() => import("../pages/dashboard/index"));
 const StarterPage = React.lazy(() => import("../pages/StarterPage/index"));
+const RoomIndex = React.lazy(() => import("../pages/Room/index"));
 
 // auth
 const Login = React.lazy(() => import("../pages/Auth/Login"));
@@ -16,7 +17,7 @@ const LockScreen = React.lazy(() => import("../pages/Auth/LockScreen"));
 const authProtectedRoutes = [
   { path: "/dashboard", component: <Dashboard /> },
   { path: "/pages-starter", component: <StarterPage /> },
-
+  { path: "/room/:id", component: <RoomIndex /> },
     // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name
   {

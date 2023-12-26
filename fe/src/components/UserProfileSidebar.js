@@ -53,7 +53,7 @@ function UserProfileSidebar(props) {
 
     // closes sidebar
     const closeuserSidebar = () => {
-        props.closeUserSidebar();
+
     }
     // style={{display: props.userSidebar  ? "block" : "none"}}
     return (
@@ -124,7 +124,7 @@ function UserProfileSidebar(props) {
 
                     <div id="profile-user-accordion" className="custom-accordion">
                         <Card className="shadow-none border mb-2">
-                        
+
                             {/* import collaps */}
                             <CustomCollapse
                                 title="About"
@@ -245,10 +245,11 @@ function UserProfileSidebar(props) {
     );
 }
 
-const mapStateToProps = (state) => {
-    const { users, active_user } = state.Chat;
-    const { userSidebar } = state.Layout;
-    return { users, active_user, userSidebar };
-};
+// const mapStateToProps = (state) => {
+//     const { users, active_user } = state.Chat;
+//     const { userSidebar } = state.Layout;
+//     return { users, active_user, userSidebar };
+// };
 
-export default connect(mapStateToProps, { closeUserSidebar })(UserProfileSidebar);
+export default UserProfileSidebar;
+// export default connect(mapStateToProps, { closeUserSidebar })(UserProfileSidebar);

@@ -10,7 +10,6 @@ const axiosClient = axios.create( {
 axiosClient.interceptors.response.use(
     async ( response ) =>
     {
-        console.log('----------------------- response : ', response);
         let data = response.data;
         if ( ( data && data.code === '401' ) )
         {
@@ -54,7 +53,6 @@ export const postMethod = ( path, data ) =>
 
 export const getMethod = async ( path, params ) =>
 {
-    console.log('---------- ${ process.env.REACT_APP_API }${ path }: ', `${ process.env.REACT_APP_URL_API }${ path }`);
     return await axiosClient.get( `${ path }`, { headers: headers, params: params } )
         .then( response =>
         {

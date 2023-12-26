@@ -17,7 +17,7 @@ class Chats extends Component {
         super(props);
         this.state = {
             searchChat: "",
-            recentChatList: this.props.recentChatList
+            recentChatList: []
         }
         this.openUserChat = this.openUserChat.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -33,7 +33,7 @@ class Chats extends Component {
     componentDidUpdate(prevProps) {
         if (prevProps !== this.props) {
             this.setState({
-                recentChatList: this.props.recentChatList
+                recentChatList: []
             });
         }
     }

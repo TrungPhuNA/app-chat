@@ -30,7 +30,7 @@ function LeftSidebarMenu(props) {
           layoutMode: layout.layoutMode,
         })
       );
-      
+
       const { layoutMode } = useSelector(selectLayoutProperties);
 
     const mode =
@@ -157,32 +157,6 @@ function LeftSidebarMenu(props) {
 
                 <div className="flex-lg-column d-none d-lg-block">
                     <Nav className="side-menu-nav justify-content-center">
-                        <Dropdown nav isOpen={dropdownOpen2} className="btn-group dropup profile-user-dropdown" toggle={toggle2}>
-                            <DropdownToggle nav>
-                                <i className="ri-global-line"></i>
-                            </DropdownToggle>
-                            <DropdownMenu>
-                                <DropdownItem onClick={() => changeLanguageAction('eng')} active={lng === "English"}>
-                                    <img src={usFlag} alt="user" className="me-1" height="12" /> <span className="align-middle">English</span>
-                                </DropdownItem>
-
-                                <DropdownItem onClick={() => changeLanguageAction('sp')} active={lng === "Spanish"}>
-                                    <img src={spain} alt="user" className="me-1" height="12" /> <span className="align-middle">Spanish</span>
-                                </DropdownItem>
-
-                                <DropdownItem onClick={() => changeLanguageAction('gr')} active={lng === "German"}>
-                                    <img src={germany} alt="user" className="me-1" height="12" /> <span className="align-middle">German</span>
-                                </DropdownItem>
-
-                                <DropdownItem onClick={() => changeLanguageAction('it')} active={lng === "Italian"}>
-                                    <img src={italy} alt="user" className="me-1" height="12" /> <span className="align-middle">Italian</span>
-                                </DropdownItem>
-
-                                <DropdownItem onClick={() => changeLanguageAction('rs')} active={lng === "Russian"}>
-                                    <img src={russia} alt="user" className="me-1" height="12" /> <span className="align-middle">Russian</span>
-                                </DropdownItem>
-                            </DropdownMenu>
-                        </Dropdown>
                         <li className="nav-item">
                             <NavLink id="light-dark" className='mb-2' onClick={() => onChangeLayoutMode(mode)}>
                                 <i className="ri-sun-line theme-mode-icon"></i>

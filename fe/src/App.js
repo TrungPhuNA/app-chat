@@ -5,15 +5,10 @@ import Routes from './routes';
 import "./assets/scss/themes.scss";
 
 //fackbackend
-import fakeBackend from './helpers/fake-backend';
 import { useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
 
-// //Firebase helper
-// import { initFirebaseBackend } from "./helpers/firebase";
 
-// TODO
-fakeBackend();
 
 // const firebaseConfig = {
 // 	apiKey: process.env.REACT_APP_APIKEY,
@@ -25,7 +20,7 @@ fakeBackend();
 // 	appId: process.env.REACT_APP_APPID,
 // 	measurementId: process.env.REACT_APP_MEASUREMENTID,
 // };
-  
+
 // // init firebase backend
 // initFirebaseBackend(firebaseConfig);
 
@@ -37,7 +32,7 @@ function App() {
       layoutMode: layout.layoutMode,
     })
   );
-  
+
   const { layoutMode } = useSelector(selectLayoutProperties);
 
 useEffect(() => {

@@ -10,10 +10,9 @@ import Groups from "./Tabs/Groups";
 import Contacts from "./Tabs/Contacts";
 import Settings from "./Tabs/Settings";
 
-function ChatLeftSidebar(props) {
-
+const ChatLeftSidebar = (props) => {
     const activeTab = props.activeTab;
-
+    console.log('-------------- activeTab: ', activeTab);
     return (
         <React.Fragment>
             <div className="chat-leftsidebar me-lg-1">
@@ -29,7 +28,7 @@ function ChatLeftSidebar(props) {
                     {/* Start chats tab-pane  */}
                     <TabPane tabId="chat" id="pills-chat">
                         {/* chats content */}
-                        <Chats recentChatList={props.recentChatList} />
+                        <Chats/>
                     </TabPane>
                     {/* End chats tab-pane */}
 

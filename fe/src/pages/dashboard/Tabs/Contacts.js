@@ -1,16 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button, Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledTooltip, Form, Label, Input, InputGroup, } from 'reactstrap';
 import SimpleBar from "simplebar-react";
-
-import { connect } from "react-redux";
-
-import { withTranslation } from 'react-i18next';
 import {ApiFeUserService} from "../../../services/fe/ApiFeUserService";
+
 
 const Contacts = () => {
     const [users, setUsers] = useState([]);
     const getListUsers = async () => {
         let response = await ApiFeUserService.getDataList([]);
+        if (response.status === 200)
+        {
+            setUsers(response?.data?.users);
+        }
         console.log('------------- getListUsers@response: ', response);
     }
 
@@ -32,7 +33,7 @@ const Contacts = () => {
                             </Button>
                         </div>
                         <UncontrolledTooltip target="add-contact" placement="bottom">
-                            Add Contact
+                            Thêm mới liên hệ
                         </UncontrolledTooltip>
                     </div>
                     <h4 className="mb-4">Liên hệ</h4>
@@ -50,8 +51,7 @@ const Contacts = () => {
 
                 {/* Start contact lists */}
                 <SimpleBar style={{ maxHeight: "100%" }} id="chat-room" className="p-4 chat-message-list chat-group-list">
-
-                    {
+                    { users && users.length > 0 ? (
                         users.map((contact, key) =>
                             <div key={key} className={key + 1 === 1 ? "" : "mt-3"}>
                                 <ul className="list-unstyled contact-list">
@@ -59,7 +59,7 @@ const Contacts = () => {
                                         <li key={key} >
                                             <div className="d-flex align-items-center">
                                                 <div className="flex-grow-1">
-                                                    <h5 className="font-size-14 m-0">{contact.name}</h5>
+                                                    <h5 className="font-size-14 m-0">{contact.name} 121</h5>
                                                 </div>
                                                 <UncontrolledDropdown>
                                                     <DropdownToggle tag="a" className="text-muted">
@@ -77,7 +77,11 @@ const Contacts = () => {
                                 </ul>
                             </div>
                         )
-                    }
+                    ) : (
+                        <>
+                            <p>Đang loading</p>
+                        </>
+                    )}
 
                 </SimpleBar>
                 {/* end contact lists */}
