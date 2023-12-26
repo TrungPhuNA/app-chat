@@ -69,14 +69,14 @@ function Profile(props) {
         <div className="text-center p-4 border-bottom">
           <div className="mb-4">
             <img
-              src={avatar1}
+              src={props?.user?.avatar || avatar1}
               className="rounded-circle avatar-lg img-thumbnail"
               alt="chatvia"
             />
           </div>
 
           <h5 className="font-size-16 mb-1 text-truncate">
-            {t("Patricia Smith")}
+            {props?.user?.name}
           </h5>
           <p className="text-muted text-truncate mb-1">
             <i className="ri-record-circle-fill font-size-10 text-success me-1 d-inline-block"></i>{" "}
@@ -106,22 +106,22 @@ function Profile(props) {
               >
                 <div>
                   <p className="text-muted mb-1">{t("Name")}</p>
-                  <h5 className="font-size-14">{t("Patricia Smith")}</h5>
+                  <h5 className="font-size-14">{t(`${props?.user?.name || ''}`)}</h5>
                 </div>
 
                 <div className="mt-4">
                   <p className="text-muted mb-1">{t("Email")}</p>
-                  <h5 className="font-size-14">{t("adc@123.com")}</h5>
+                  <h5 className="font-size-14">{t(`${props?.user?.email || ''}`)}</h5>
                 </div>
 
                 <div className="mt-4">
                   <p className="text-muted mb-1">{t("Time")}</p>
-                  <h5 className="font-size-14">{t("11:40 AM")}</h5>
+                  <h5 className="font-size-14">{t(`${props?.user?.created_at || ''}`)}</h5>
                 </div>
 
                 <div className="mt-4">
                   <p className="text-muted mb-1">{t("Location")}</p>
-                  <h5 className="font-size-14 mb-0">{t("California, USA")}</h5>
+                  <h5 className="font-size-14 mb-0">{t(`${props?.user?.address || ''}`)}</h5>
                 </div>
               </CustomCollapse>
             </Card>

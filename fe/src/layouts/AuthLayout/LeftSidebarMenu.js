@@ -78,6 +78,7 @@ function LeftSidebarMenu(props) {
             setlng("English");
     }
 
+
     return (
         <React.Fragment>
             <div className="side-menu flex-lg-column me-lg-1">
@@ -142,7 +143,7 @@ function LeftSidebarMenu(props) {
                         </UncontrolledTooltip>
                         <Dropdown nav isOpen={dropdownOpenMobile} toggle={toggleMobile} className="profile-user-dropdown d-inline-block d-lg-none dropup">
                             <DropdownToggle nav>
-                                <img src={avatar1} alt="chatvia" className="profile-user rounded-circle" />
+                                <img src={props?.user?.avatar || avatar1} alt="chatvia" className="profile-user rounded-circle" />
                             </DropdownToggle>
                             <DropdownMenu className="dropdown-menu-end">
                                 <DropdownItem onClick={() => { toggleTab('profile'); }}>Profile <i className="ri-profile-line float-end text-muted"></i></DropdownItem>
@@ -186,7 +187,8 @@ function LeftSidebarMenu(props) {
 
 const mapStatetoProps = state => {
     return {
-        ...state.Layout
+        ...state.Layout,
+		user: state.Auth.user
     };
 };
 
