@@ -12,7 +12,7 @@ import Settings from "./Tabs/Settings";
 
 const ChatLeftSidebar = (props) => {
     const activeTab = props.activeTab;
-    console.log('-------------- activeTab: ', activeTab);
+
     return (
         <React.Fragment>
             <div className="chat-leftsidebar me-lg-1">
@@ -21,7 +21,7 @@ const ChatLeftSidebar = (props) => {
                     {/* Start Profile tab-pane */}
                     <TabPane tabId="profile" id="pills-user"   >
                         {/* profile content  */}
-                        <Profile />
+                        <Profile user={props.user}/>
                     </TabPane>
                     {/* End Profile tab-pane  */}
 
@@ -62,7 +62,8 @@ const ChatLeftSidebar = (props) => {
 
 const mapStatetoProps = state => {
     return {
-        ...state.Layout
+        ...state.Layout,
+		user: state.Auth.user
     };
 };
 
